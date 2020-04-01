@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <ApplicationGrid>
-        <div>hello</div>
+        <div>Let's chat</div>
       </ApplicationGrid>
     </div>
   );

@@ -1,0 +1,39 @@
+.chat-container {
+  grid-column: 3/-1;
+  grid-row: 1/-1;
+  background: #dfe9e9;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 88% 1% 10%;
+  padding: 6px;
+
+  .chat--display-msg {
+    background: #ffffff;
+    grid-column: 1/-1;
+    grid-row: 1;
+    margin: 3px 6px 0 3px;
+  }
+
+  .chat__form {
+    grid-row: 3;
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .bx--form-item {
+      margin: 0 8px 0 0;
+      border-radius: 3px;
+    }
+
+    .chat__form--submit-btn.bx--btn{
+      border-radius: 6px;
+      min-height: 20px;
+      height: 40px;
+      width: 30px;
+      text-align: center;
+      padding: calc(0.875rem - 3px) 55px calc(0.875rem - 3px) 17px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+
+import ChannelContainer from './ChannelContainer.js';
+import ChatContainer from './ChatContainer.js';
 
 import '../styles/Dashboard.scss';
 
@@ -8,14 +9,11 @@ export class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        hello
+        <ChannelContainer />
+        <ChatContainer />
       </div>
     )
   }
 }
-
-Dashboard.propTypes = {
-
-};
 
 export default Dashboard;

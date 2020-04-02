@@ -1,0 +1,34 @@
+@import './_mixins/_variables';
+//
+// .dashboard {
+//   align-content: start;
+//   background: $primary-white;
+//   display: grid;
+//   grid-gap: 16px;
+//   grid-row: 2/3;
+//   margin: 100px 5% 0;
+//   padding: 34px 28px 0;
+//
+//   .dashboard--title {
+//     font-weight: 500px;
+//   }
+//
+//   .bx--modal-content {
+//     align-items: center;
+//     display: flex;
+//     font-size: 14px;
+//     margin: 0;
+//   }
+//
+//   .bx--modal-close:focus {
+//     border-color: $primary-blue;
+//   }
+// }
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 60%;
+  height: 80vh;
+  margin: 24px auto;
+}

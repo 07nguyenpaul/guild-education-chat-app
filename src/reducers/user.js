@@ -1,16 +1,41 @@
 import {
-  SET_USER__SUCCESS
+  SET_USER__SUCCESS,
+  CLEAR_USER,
+  SEND_MESSAGE__REQUEST,
+  SEND_MESSAGE__SUCCESS,
+  SEND_MESSAGE__FAILURE,
 } from '../actions/actionTypes';
 
-const initialState = {
+const initialStateUser = {
   currentUser: null,
 };
 
-export default function zones(state=initialState, action) {
+export function user(state=initialStateUser, action) {
   switch(action.type) {
     case SET_USER__SUCCESS:
-      const code = action.response;
       return { ...state, currentUser: action.payload.currentUser };
+    case CLEAR_USER:
+      return { ...initialStateUser };
+    default:
+      return state;
+  }
+};
+
+const initialStateMessage = {
+  status: null,
+  requesting: false,
+  error: ''
+};
+
+export function sendMessage(state=initialStateMessage, action) {
+  switch(action.type) {
+    case SEND_MESSAGE__REQUEST:
+      return { ...state, status: null, requesting: true };
+    case SEND_MESSAGE__SUCCESS:
+      const code = action.response;
+      return { ...state, status: code, requesting: false };
+    case SEND_MESSAGE__FAILURE:
+      return { ...state, requesting: false, error: action.error.message};
     default:
       return state;
   }

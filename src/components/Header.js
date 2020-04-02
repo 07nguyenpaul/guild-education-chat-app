@@ -27,5 +27,10 @@ const Header = ({ user, handleHeaderChange, login }) => (
   </div>
 );
 
+Header.propTypes = {
+  user: PropTypes.object,
+  handleHeaderChange: PropTypes.func,
+  login: PropTypes.func
+};
 
 export default Header;

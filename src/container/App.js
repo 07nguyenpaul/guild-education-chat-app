@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { auth, provider } from '../firebase';
 import { connect } from 'react-redux';
 
-import ApplicationGrid from './ApplicationGrid.js';
 import Dashboard from './Dashboard.js';
 import Header from '../components/Header.js';
 
-import {setUser} from '../actions/user';
+import {setUser, clearUser} from '../actions/user';
 
 import '../styles/_mixins/_carbon.scss';
 
@@ -15,19 +14,31 @@ class App extends Component {
     // Persist User on refresh
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.props.setUser(user);
+        const currentUser = {
+          displayName: user.displayName,
+          email: user.email,
+          id: user.uid,
+          photoURL: user.photoURL
+        };
+        this.props.setUser(currentUser);
       }
     });
   }
 
+  // Refactor to actions file
   logout = async () => {
-    const user = await auth.signOut()
-    this.props.setUser(user)
+    await auth.signOut()
+    this.props.clearUser()
   }
 
   login = async () => {
     const result = await auth.signInWithPopup(provider)
-    const user = result.user;
+    const user = {
+      displayName: result.user.displayName,
+      email: result.user.email,
+      id: result.user.uid,
+      photoURL: result.user.photoURL
+    };
     this.props.setUser(user);
   }
 
@@ -53,6 +64,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   setUser,
+  clearUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

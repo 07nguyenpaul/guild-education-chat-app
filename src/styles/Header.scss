@@ -1,0 +1,30 @@
+@import './_mixins/_variables';
+
+.header {
+  background-color: $primary-gray;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  height: 80px;
+  justify-content: flex-end;
+
+  .bx--list-box__field {
+    padding: 0 8px;
+  }
+
+  .header--user-info {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8px;
+
+    .header__avatar {
+      border-radius: 30px;
+      height: 40px;
+      width: 40px;
+    }
+
+    .bx--list-box__menu-icon {
+      display: none;
+    }
+  }
+}

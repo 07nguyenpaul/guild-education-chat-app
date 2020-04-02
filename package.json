@@ -10,6 +10,7 @@
     "carbon-components-react": "^7.9.1",
     "carbon-icons": "^7.0.7",
     "connected-react-router": "^6.6.1",
+    "firebase": "^7.13.1",
     "isomorphic-fetch": "^2.2.1",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",

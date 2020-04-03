@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import DisplayMessageTile from '../components/DisplayMessageTile';
 
-import { sendMessage, grabMessages, grabMessagesSuccess } from '../actions/user';
+import { sendMessage, grabMessages, grabMessagesSuccess } from '../actions/actionCreators';
 
 import '../styles/ChatContainer.scss';
 

@@ -1,58 +1,59 @@
+@import './_mixins/_variables';
+
 .chat-container {
+  background: $background-gray;
+  display: grid;
   grid-column: 3/-1;
   grid-row: 1/-1;
-  background: #dfe9e9;
-
-  display: grid;
-  grid-template-rows: 88% 1% 10%;
+  grid-template-rows: 94% 1% 5%;
+  margin-top: 81px;
   padding: 6px;
 
   .chat__form {
+    align-items: center;
+    display: flex;
     grid-row: 3;
     grid-column: 1/-1;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
 
     .bx--form-item {
-      margin: 0 8px 0 0;
       border-radius: 3px;
+      margin: 0 8px 0 0;
     }
 
     .chat__form--submit-btn.bx--btn{
       border-radius: 6px;
-      min-height: 20px;
       height: 40px;
-      width: 30px;
-      text-align: center;
+      min-height: 20px;
       padding: calc(0.875rem - 3px) 55px calc(0.875rem - 3px) 17px;
+      text-align: center;
+      width: 30px;
     }
   }
 }
 
 .main-screen {
+  background: $primary-white;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   height: 100%;
-  background: #ffffff;
-
+  overflow-y: scroll;
+  padding: 8px 6px;
 
   .header__avatar {
     border-radius: 30px;
     height: 40px;
-    width: 40px;
     margin: 0 12px;
+    width: 40px;
   }
 
-
   .display-right {
-    justify-content: flex-end;
     display: flex;
-    width: 60%;
-    position: relative;
     left: 40%;
+    justify-content: flex-end;
     margin: 4px 0;
+    position: relative;
+    width: 60%;
 
     .text__wrapper {
       .message--date {
@@ -73,10 +74,10 @@
   .message__tag {
     align-self: center;
     border-radius: 2px;
-    height: max-content;
     font-size: 16px;
-    word-break: break-word;
+    height: max-content;
     padding: 6px;
+    word-break: break-word;
   }
 
   .message--date {
@@ -84,7 +85,13 @@
   }
 
   .chat__tile {
-    margin: 3px 6px 0 3px;
     display: flex;
+    margin: 3px 6px 0 3px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .chat-container {
+    grid-template-rows: 88% 1% 10%;
   }
 }

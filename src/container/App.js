@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Dashboard from './Dashboard.js';
 import Header from '../components/Header.js';
 
-import {setUser, clearUser, addUserToActiveList } from '../actions/user';
+import {setUser, clearUser, addUserToActiveList } from '../actions/actionCreators';
 
 import '../styles/_mixins/_carbon.scss';
 

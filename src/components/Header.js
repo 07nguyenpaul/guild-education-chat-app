@@ -18,11 +18,16 @@ const Header = ({ user, handleHeaderChange, login }) => (
           ]}
           onChange={value => handleHeaderChange(value)}
           selectedItem={`Welcome ${user.displayName}`}
-          />
+        />
         <img className="header__avatar" alt="user avatar" src={user.photoURL} />
       </div>
     ) : (
-      <button type="header__button" onClick={login}>Log In</button>
+      <button
+        type="header__button"
+        onClick={login}
+      >
+        Log In
+      </button>
     )}
   </div>
 );

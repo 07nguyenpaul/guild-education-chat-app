@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import DisplayMessageTile from '../components/DisplayMessageTile';
 
-import { sendMessage, grabMessages, grabMessagesSuccess } from '../actions/actionCreators';
+import { sendMessage, grabMessages } from '../actions/actionCreators';
 
 import '../styles/ChatContainer.scss';
 
@@ -49,11 +49,12 @@ export class ChatContainer extends Component {
 
   render() {
     const { message } = this.state;
+    const { user, allMessages } = this.props;
 
     return (
       <div className="chat-container">
         <div className="main-screen">
-          {this.props.allMessages && this.props.allMessages.length > 0 && this.props.user && this.renderConvo()}
+          {allMessages && allMessages.length > 0 && user && this.renderConvo()}
         </div>
       <Form
         className="chat__form"
@@ -62,7 +63,7 @@ export class ChatContainer extends Component {
         <TextInput
           className="chat__form--text-input"
           defaultValue={message}
-          disabled={ !this.props.user ? true : false }
+          disabled={ !user ? true : false }
           id="chat__form--text-input"
           labelText=""
           light={true}
@@ -73,7 +74,7 @@ export class ChatContainer extends Component {
         />
         <Button
           className="chat__form--submit-btn"
-          disabled={ !this.props.user ? true : false }
+          disabled={ !user ? true : false }
           kind="primary"
           type="submit"
           onSubmit={(e) => this.handleSubmit(e)}
@@ -100,7 +101,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   sendMessage,
   grabMessages,
-  grabMessagesSuccess
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);

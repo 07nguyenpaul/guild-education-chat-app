@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from 'carbon-components-react';
 import moment from 'moment';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import '../styles/ChatContainer.scss';
 
@@ -20,8 +20,10 @@ const DisplayMessageTile = ({firstUser, chat, currentUser}) => (
   </div>
 );
 
-// DisplayMessageTile.propTypes = {
-//
-// };
+DisplayMessageTile.propTypes = {
+  firstUser: PropTypes.string,
+  chat: PropTypes.object,
+  currentUser: PropTypes.object,
+};
 
 export default DisplayMessageTile;

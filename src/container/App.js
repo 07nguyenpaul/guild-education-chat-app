@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import Dashboard from './Dashboard.js';
 import Header from '../components/Header.js';
 
-import {setUser, clearUser} from '../actions/user';
+import {setUser, clearUser } from '../actions/user';
 
 import '../styles/_mixins/_carbon.scss';
 
 class App extends Component {
   componentDidMount() {
     // Persist User on refresh
-    auth.onAuthStateChanged((user) => {
+    if (!this.props.user) {
+      auth.onAuthStateChanged((user) => {
       if (user) {
         const currentUser = {
           displayName: user.displayName,
@@ -22,7 +23,8 @@ class App extends Component {
         };
         this.props.setUser(currentUser);
       }
-    });
+      });
+    }
   }
 
   // Refactor to actions file
@@ -37,7 +39,7 @@ class App extends Component {
       displayName: result.user.displayName,
       email: result.user.email,
       id: result.user.uid,
-      photoURL: result.user.photoURL
+      photoURL: result.user.photoURL,
     };
     this.props.setUser(user);
   }

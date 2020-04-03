@@ -1,10 +1,13 @@
-import {db} from '../firebase';
+import { db } from '../firebase';
 import {
   CLEAR_USER,
   SET_USER__SUCCESS,
   SEND_MESSAGE__REQUEST ,
   SEND_MESSAGE__SUCCESS,
   SEND_MESSAGE__FAILURE,
+  GRAB_MESSAGES__REQUEST ,
+  GRAB_MESSAGES__SUCCESS,
+  GRAB_MESSAGES__FAILURE,
 } from './actionTypes';
 
 export function setUser(user) {
@@ -30,7 +33,7 @@ export const sendMessage = (message, user, sendToUser) => {
         message: message,
         currentUser: user,
         sendToUser: sendToUser,
-        createdAt: new Date()
+        createdAt: new Date().toISOString()
       })
       .then(function(docRef) {
         if(docRef.id) {
@@ -54,4 +57,34 @@ export const sendMessageSuccess = (response) => {
 
 export const sendMessageFailure = (body) => {
   return { type: SEND_MESSAGE__FAILURE, body};
+};
+
+export const grabMessages = () => {
+  return async dispatch => {
+    dispatch(grabMessagesRequest());
+    try {
+      let allMessages = [];
+      await db.collection("messages").orderBy("createdAt", "asc").get()
+        .then(function(documentSnapshot) {
+          documentSnapshot.forEach(function(doc) {
+            allMessages.push(doc.data());
+        });
+      });
+      dispatch(grabMessagesSuccess(allMessages));
+    } catch (error) {
+      dispatch(grabMessagesFailure(error));
+    }
+  };
+}
+
+export const grabMessagesRequest = () => {
+  return { type: GRAB_MESSAGES__REQUEST };
+};
+
+export const grabMessagesSuccess = (response) => {
+  return { type: GRAB_MESSAGES__SUCCESS, response };
+};
+
+export const grabMessagesFailure = (body) => {
+  return { type: GRAB_MESSAGES__FAILURE, body};
 };

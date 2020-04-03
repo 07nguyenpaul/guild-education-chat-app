@@ -14,7 +14,7 @@ const DisplayMessageTile = ({firstUser, chat, currentUser}) => (
         >
         {chat.message}
       </Tag>
-      <div className="message--date">{moment(chat.message.createdAt).format('LLL')}</div>
+      <div className="message--date">{moment(chat.createdAt).format('LLL')}</div>
     </div>
     <img className="header__avatar" alt="user avatar" src={chat.currentUser.photoURL} />
   </div>

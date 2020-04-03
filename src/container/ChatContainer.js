@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Button, Form, TextInput } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { db } from '../firebase';
 
 import DisplayMessageTile from '../components/DisplayMessageTile';
 
-import { sendMessage, grabMessages } from '../actions/user';
+import { sendMessage, grabMessages, grabMessagesSuccess } from '../actions/user';
 
 import '../styles/ChatContainer.scss';
 
@@ -15,7 +16,14 @@ export class ChatContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.grabMessages();
+    db.collection("messages").orderBy("createdAt", "asc")
+    .onSnapshot(function(querySnapshot) {
+      var messages = [];
+        querySnapshot.forEach(function(doc) {
+            messages.push(doc.data());
+        });
+        this.props.grabMessagesSuccess(messages);
+    }.bind(this));
   }
 
   handleChange = (e) => {
@@ -38,7 +46,7 @@ export class ChatContainer extends Component {
 
       return (
         <DisplayMessageTile
-          key={chat.currentUser.id}
+          key={chat.createdAt}
           firstUser={firstUser}
           chat={chat}
           currentUser={this.props.user}
@@ -53,7 +61,7 @@ export class ChatContainer extends Component {
     return (
       <div className="chat-container">
         <div className="main-screen">
-          {this.props.allMessages && this.props.user && this.renderConvo()}
+          {this.props.allMessages && this.props.allMessages.length > 0 && this.renderConvo()}
         </div>
       <Form
         className="chat__form"
@@ -99,7 +107,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   sendMessage,
-  grabMessages
+  grabMessages,
+  grabMessagesSuccess
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);

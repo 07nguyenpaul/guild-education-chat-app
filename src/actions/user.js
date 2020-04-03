@@ -70,7 +70,17 @@ export const grabMessages = () => {
             allMessages.push(doc.data());
         });
       });
-      dispatch(grabMessagesSuccess(allMessages));
+
+
+        dispatch(grabMessagesSuccess(allMessages));
+      // await db.collection("messages").orderBy("createdAt", "asc").onSnapshot(function(querySnapshot) {
+      //   let allMessages = [];
+      //   querySnapshot.forEach(function(doc) {
+      //       allMessages.push(doc.data());
+      //       // console.log(allMessages);
+      //       dispatch(grabMessagesSuccess(allMessages));
+      //   });
+      // });
     } catch (error) {
       dispatch(grabMessagesFailure(error));
     }

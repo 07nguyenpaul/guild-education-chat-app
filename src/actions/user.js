@@ -2,6 +2,9 @@ import { db } from '../firebase';
 import {
   CLEAR_USER,
   SET_USER__SUCCESS,
+  ACTIVE_USERS_LIST__REQUEST,
+  ACTIVE_USERS_LIST__SUCCESS,
+  ACTIVE_USERS_LIST__FAILURE,
   SEND_MESSAGE__REQUEST ,
   SEND_MESSAGE__SUCCESS,
   SEND_MESSAGE__FAILURE,
@@ -9,6 +12,38 @@ import {
   GRAB_MESSAGES__SUCCESS,
   GRAB_MESSAGES__FAILURE,
 } from './actionTypes';
+
+export const addUserToActiveList = (user) => {
+  return async dispatch => {
+    dispatch(addUserToActiveListRequest());
+    try {
+      await db.collection("allActiveUsers").add({
+        user: user,
+        active: true
+      })
+      .then(function(docRef) {
+        if(docRef.id) {
+          let status = 200;
+          dispatch(addUserToActiveListSuccess(status));
+        }
+      })
+    } catch (error) {
+      dispatch(addUserToActiveListFailure(error));
+    }
+  };
+}
+
+export const addUserToActiveListRequest = () => {
+  return { type: ACTIVE_USERS_LIST__REQUEST };
+};
+
+export const addUserToActiveListSuccess = (response) => {
+  return { type: ACTIVE_USERS_LIST__SUCCESS, response };
+};
+
+export const addUserToActiveListFailure = (body) => {
+  return { type: ACTIVE_USERS_LIST__FAILURE, body};
+};
 
 export function setUser(user) {
   return {
@@ -24,6 +59,7 @@ export const clearUser = () => {
     type: CLEAR_USER,
   }
 }
+
 
 export const sendMessage = (message, user, sendToUser) => {
   return async dispatch => {

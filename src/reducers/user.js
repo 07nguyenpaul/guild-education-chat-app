@@ -1,6 +1,9 @@
 import {
   SET_USER__SUCCESS,
   CLEAR_USER,
+  ACTIVE_USERS_LIST__REQUEST,
+  ACTIVE_USERS_LIST__SUCCESS,
+  ACTIVE_USERS_LIST__FAILURE,
   SEND_MESSAGE__REQUEST,
   SEND_MESSAGE__SUCCESS,
   SEND_MESSAGE__FAILURE,
@@ -11,12 +14,21 @@ import {
 
 const initialStateUser = {
   currentUser: null,
+  status: null,
+  requesting: false,
+  error: '',
 };
 
 export function user(state=initialStateUser, action) {
   switch(action.type) {
     case SET_USER__SUCCESS:
-      return { ...state, currentUser: action.payload.currentUser };
+      return { ...state, currentUser: action.payload.currentUser, requesting: false };
+    case ACTIVE_USERS_LIST__REQUEST:
+      return { ...state, status: null, requesting: true };
+    case ACTIVE_USERS_LIST__SUCCESS:
+      return { ...state, status: action.response, requesting: false };
+    case ACTIVE_USERS_LIST__FAILURE:
+      return { ...state, requesting: false, error: action.error.message};
     case CLEAR_USER:
       return { ...initialStateUser };
     default:

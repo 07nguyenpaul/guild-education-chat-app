@@ -17,6 +17,14 @@
     justify-content: flex-end;
     margin-right: 8px;
 
+    #header_menu {
+      border: none;
+    }
+
+    #header_menu:hover {
+      background: transparent;
+    }
+
     .header__avatar {
       border-radius: 30px;
       height: 40px;

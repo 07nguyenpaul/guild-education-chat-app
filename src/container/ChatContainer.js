@@ -53,7 +53,7 @@ export class ChatContainer extends Component {
     return (
       <div className="chat-container">
         <div className="main-screen">
-          {this.props.allMessages && this.props.allMessages.length > 0 && this.renderConvo()}
+          {this.props.allMessages && this.props.allMessages.length > 0 && this.props.user && this.renderConvo()}
         </div>
       <Form
         className="chat__form"

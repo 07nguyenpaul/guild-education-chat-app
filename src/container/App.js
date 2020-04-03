@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Dashboard from './Dashboard.js';
 import Header from '../components/Header.js';
 
-import {setUser, clearUser } from '../actions/user';
+import {setUser, clearUser, addUserToActiveList } from '../actions/user';
 
 import '../styles/_mixins/_carbon.scss';
 
@@ -42,6 +42,7 @@ class App extends Component {
       photoURL: result.user.photoURL,
     };
     this.props.setUser(user);
+    this.props.addUserToActiveList(user);
   }
 
   handleHeaderChange = (value) => {
@@ -66,7 +67,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   setUser,
-  clearUser
+  clearUser,
+  addUserToActiveList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

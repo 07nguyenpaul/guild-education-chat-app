@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, TextInput } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { db } from '../firebase';
 
 import DisplayMessageTile from '../components/DisplayMessageTile';
 
@@ -16,14 +15,7 @@ export class ChatContainer extends Component {
   }
 
   componentDidMount() {
-    db.collection("messages").orderBy("createdAt", "asc")
-    .onSnapshot(function(querySnapshot) {
-      var messages = [];
-        querySnapshot.forEach(function(doc) {
-            messages.push(doc.data());
-        });
-        this.props.grabMessagesSuccess(messages);
-    }.bind(this));
+    this.props.grabMessages();
   }
 
   handleChange = (e) => {

@@ -63,24 +63,14 @@ export const grabMessages = () => {
   return async dispatch => {
     dispatch(grabMessagesRequest());
     try {
-      let allMessages = [];
-      await db.collection("messages").orderBy("createdAt", "asc").get()
-        .then(function(documentSnapshot) {
-          documentSnapshot.forEach(function(doc) {
-            allMessages.push(doc.data());
-        });
-      });
-
-
-        dispatch(grabMessagesSuccess(allMessages));
-      // await db.collection("messages").orderBy("createdAt", "asc").onSnapshot(function(querySnapshot) {
-      //   let allMessages = [];
-      //   querySnapshot.forEach(function(doc) {
-      //       allMessages.push(doc.data());
-      //       // console.log(allMessages);
-      //       dispatch(grabMessagesSuccess(allMessages));
-      //   });
-      // });
+      await db.collection("messages").orderBy("createdAt", "asc")
+      .onSnapshot(function(querySnapshot) {
+        var messages = [];
+          querySnapshot.forEach(function(doc) {
+              messages.push(doc.data());
+          });
+          dispatch(grabMessagesSuccess(messages));
+      })
     } catch (error) {
       dispatch(grabMessagesFailure(error));
     }

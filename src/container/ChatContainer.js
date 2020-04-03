@@ -74,7 +74,7 @@ export class ChatContainer extends Component {
         />
         <Button
           className="chat__form--submit-btn"
-          disabled={ !user ? true : false }
+          disabled={ !user && message ? true : !message ? true : false }
           kind="primary"
           type="submit"
           onSubmit={(e) => this.handleSubmit(e)}

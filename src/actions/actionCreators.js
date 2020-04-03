@@ -60,7 +60,6 @@ export const clearUser = () => {
   }
 }
 
-
 export const sendMessage = (message, user, sendToUser) => {
   return async dispatch => {
     dispatch(sendMessageRequest());

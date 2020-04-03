@@ -23,7 +23,7 @@ const Header = ({ user, handleHeaderChange, login }) => (
       </div>
     ) : (
       <button
-        type="header__button"
+        className="header__button--log-in"
         onClick={login}
       >
         Log In

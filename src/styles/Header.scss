@@ -10,6 +10,17 @@
   top: 0;
   width: 100vw;
 
+  button {
+    align-self: center;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    margin-right: 30px;
+    font-size: 14px;
+    width: 78px;
+  }
+
   .bx--list-box__field {
     padding: 0 8px;
   }

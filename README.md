@@ -1,6 +1,6 @@
 ## Guild Education Chat App Challenge Application
 
-Application is deployed through [Heroku]()
+Application is deployed through [Firebase](https://guild-ed-chat-server.web.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

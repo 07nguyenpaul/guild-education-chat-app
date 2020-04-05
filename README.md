@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Clone repo
 - Run `yarn install`
 - Run `yarn start` to deploy application locally
+- Login with a google email account
+- Start chatting away...
 
 ## Available Scripts
 

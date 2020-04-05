@@ -26,6 +26,7 @@ export class ChatContainer extends Component {
     this.setState({ message: '' })
   }
 
+  // TODO: 3rd arguement will be replaced with an active user to start a convo with
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.sendMessage(this.state.message, this.props.user, 'Paul')
@@ -71,6 +72,7 @@ export class ChatContainer extends Component {
           placeholder="Write a message..."
           size={undefined}
           type="text"
+          value={message}
         />
         <Button
           className="chat__form--submit-btn"

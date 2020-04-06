@@ -19,7 +19,8 @@ export const addUserToActiveList = (user) => {
     try {
       await db.collection("allActiveUsers").add({
         user: user,
-        active: true
+        active: true,
+        createdAt: new Date().toISOString()
       })
       .then(function(docRef) {
         if(docRef.id) {
